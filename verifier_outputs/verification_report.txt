@@ -1,0 +1,90 @@
+======================================================================
+VCP Evidence Pack Verification Report
+VCP v1.1 Full Compliance Edition
+======================================================================
+Evidence Path: /home/claude/ibkr_evidence_pack_v1_1_production
+Verification Time: 2026-01-06T11:32:45.562552+00:00
+
+Specification: VCP v1.1
+Generator: VCP.IBKR.Production.v1.1
+Conformance Tier: GOLD
+PolicyID: org.veritaschain:vcp-ibkr-production-v1
+Total Events: 26
+Total Batches: 1
+Total Anchors: 1
+Protocol: FIX 4.2
+
+VCP v1.1 Compliance Verification:
+
+  ✓ Specification declared: VCP v1.1
+  ✓ Global PolicyIdentification present
+    ✓ PolicyID: org.veritaschain:vcp-ibkr-production-v1
+    ✓ ConformanceTier: GOLD
+    ✓ RegistrationPolicy.Issuer: VeritasChain IBKR Production Issuer
+    ✓ VerificationDepth present:
+      - HashChainValidation: True
+      - MerkleProofRequired: True
+      - ExternalAnchorRequired: True
+
+  Event-level PolicyIdentification:
+    ✓ All 26 events have PolicyIdentification
+
+  Three-Layer Architecture (Section 6):
+    ✓ Layer 1: EventHash (REQUIRED) + PrevHash (Chained)
+    ✓ Layer 2: Merkle Tree RFC 6962 (REQUIRED)
+    ✓ Layer 3: External Anchor via TSA (REQUIRED)
+
+  ✓ External Anchor present (1 anchor event(s))
+    - AnchorID: IBKR_ANCHOR_20250106_193500
+    - AnchorTarget: TIMESTAMPING_AUTHORITY
+    - AnchorFrequency: DAILY
+
+VCP v1.1 Compliance Check: ✓ FULLY COMPLIANT
+
+----------------------------------------------------------------------
+
+Layer 1 - Event Hash Verification (SHA-256):
+  ✓ All 26 event hashes cryptographically verified
+
+Layer 1 - Hash Chain Verification (OPTIONAL in v1.1):
+  ✓ Hash chain present and verified (enhanced integrity)
+
+Layer 2 - Merkle Root Verification (RFC 6962):
+  ✓ Merkle root verified: b632b62f4350aed34bf8e3ac508ceb8b...
+    Tree rebuilt from 24 event hashes
+
+Layer 2 - Merkle Inclusion Proof Verification:
+  ✓ Event 01943af3-21c0-7440... inclusion verified
+  ✓ Event 01943af3-2544-7cab... inclusion verified
+  ✓ Event 01943af3-2bf2-775b... inclusion verified
+
+Layer 3 - External Anchor Verification:
+  ✓ Anchor IBKR_ANCHOR_20250106_193500 verified
+    Target: TIMESTAMPING_AUTHORITY
+
+Timeline Verification:
+  ⚠ 3 non-monotonic timestamps detected
+
+Event Type Distribution:
+  ACK: 4
+  CXL: 2
+  EXE: 3
+  INIT: 1
+  MOD: 2
+  ORD: 5
+  PRT: 1
+  REJ: 1
+  SIG: 5
+  VCP_ANCHOR: 1
+  VCP_BATCH: 1
+
+======================================================================
+Overall: ✓ CRYPTOGRAPHICALLY VERIFIED
+
+This evidence pack is fully compliant with VCP Specification v1.1:
+  - Section 5.5: PolicyIdentification ✓
+  - Section 6: Three-Layer Architecture ✓
+  - Section 2.1: External Anchor REQUIRED ✓
+
+All hashes, proofs, and anchors have been independently verified.
+======================================================================

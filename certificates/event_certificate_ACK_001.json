@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "certificate_type": "VCP_EVENT_CERTIFICATE",
+  "vcp_version": "1.1",
+  "event": {
+    "event_id": "01943af3-2242-7d22-8f70-615323915a5a",
+    "event_type": "ACK",
+    "event_hash": "cd82cfb0200112084b1db79b1d974f64ad55f5cd4c48f8ada495af54eadf89be",
+    "timestamp_iso": "2025-01-06T09:30:00.130Z",
+    "timestamp_int": 1736155800130000
+  },
+  "verification": {
+    "merkle_root": "b632b62f4350aed34bf8e3ac508ceb8ba5a33b4663ca0cc81dc99880c6356c9c",
+    "inclusion_proof": {
+      "EventID": "01943af3-2242-7d22-8f70-615323915a5a",
+      "EventHash": "cd82cfb0200112084b1db79b1d974f64ad55f5cd4c48f8ada495af54eadf89be",
+      "LeafIndex": 3,
+      "MerkleRoot": "b632b62f4350aed34bf8e3ac508ceb8ba5a33b4663ca0cc81dc99880c6356c9c",
+      "AuditPath": [
+        {
+          "position": "left",
+          "hash": "1feb9e287f998488a4e194de74a44cacff8becd24ab5f7483df6ba79060b0956"
+        },
+        {
+          "position": "left",
+          "hash": "37526dee8b5585c3b4599803f8c61524d8013570dc1847ca5c5ee242ff093df9"
+        },
+        {
+          "position": "right",
+          "hash": "7a3f8c84bca406f5ec324a6da07c7ba8b447f4a1350cfa49a3896cfa3255cd2b"
+        },
+        {
+          "position": "right",
+          "hash": "19f1929ebbc38ffc373fb7b86b04c5013a1ad5baf01239324243fa3970250b84"
+        },
+        {
+          "position": "right",
+          "hash": "bcf15506948cbd3af00051e90bde4bc011f492d8ff45921a2585cb3b23d28bfe"
+        }
+      ]
+    },
+    "hash_algorithm": "SHA-256",
+    "merkle_construction": "RFC6962"
+  },
+  "issuer": {
+    "organization": "VeritasChain IBKR Production Issuer",
+    "policy_id": "org.veritaschain:vcp-ibkr-production-v1",
+    "conformance_tier": "GOLD"
+  },
+  "broker_context": {
+    "broker": "Interactive Brokers LLC",
+    "account_id": "U12345678",
+    "fix_version": "4.2"
+  },
+  "regulatory_context": {
+    "jurisdiction": "US",
+    "regulations": [
+      "SEC Rule 17a-4",
+      "FINRA Rule 4511",
+      "Reg NMS"
+    ],
+    "retention_years": 6
+  },
+  "generated_at": "2026-01-06T07:02:07.572566+00:00"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "certificate_type": "VCP_EVENT_CERTIFICATE",
+  "vcp_version": "1.1",
+  "event": {
+    "event_id": "01943af3-2896-7c6f-aa58-0657c44ecdbe",
+    "event_type": "REJ",
+    "event_hash": "989ec2a87bf63f43bab8a8f01fe23ee60c7737ff5d5ea5e0511ad5ffd00a5fe5",
+    "timestamp_iso": "2025-01-06T09:30:01.750Z",
+    "timestamp_int": 1736155801750000
+  },
+  "verification": {
+    "merkle_root": "b632b62f4350aed34bf8e3ac508ceb8ba5a33b4663ca0cc81dc99880c6356c9c",
+    "inclusion_proof": {
+      "EventID": "01943af3-2896-7c6f-aa58-0657c44ecdbe",
+      "EventHash": "989ec2a87bf63f43bab8a8f01fe23ee60c7737ff5d5ea5e0511ad5ffd00a5fe5",
+      "LeafIndex": 18,
+      "MerkleRoot": "b632b62f4350aed34bf8e3ac508ceb8ba5a33b4663ca0cc81dc99880c6356c9c",
+      "AuditPath": [
+        {
+          "position": "right",
+          "hash": "8784df8644d4812375442d68d8f266716d857858ec14c6709ba9922c0e4998ca"
+        },
+        {
+          "position": "left",
+          "hash": "4cd9642eb822eeeddfe2c218480db80b063c5421afdd92402b4f979dd373aed4"
+        },
+        {
+          "position": "right",
+          "hash": "19339276fb88bcb7306da83747c4a6707d6298fa24103ab0af8839843a135a4a"
+        },
+        {
+          "position": "left",
+          "hash": "83dc2b2d72c5b63dc94b2a7adf07312c67da7b5a53521e6b5305e0d3c2745d77"
+        }
+      ]
+    },
+    "hash_algorithm": "SHA-256",
+    "merkle_construction": "RFC6962"
+  },
+  "issuer": {
+    "organization": "VeritasChain IBKR Production Issuer",
+    "policy_id": "org.veritaschain:vcp-ibkr-production-v1",
+    "conformance_tier": "GOLD"
+  },
+  "broker_context": {
+    "broker": "Interactive Brokers LLC",
+    "account_id": "U12345678",
+    "fix_version": "4.2"
+  },
+  "regulatory_context": {
+    "jurisdiction": "US",
+    "regulations": [
+      "SEC Rule 17a-4",
+      "FINRA Rule 4511",
+      "Reg NMS"
+    ],
+    "retention_years": 6
+  },
+  "generated_at": "2026-01-06T07:02:07.573448+00:00"
+}

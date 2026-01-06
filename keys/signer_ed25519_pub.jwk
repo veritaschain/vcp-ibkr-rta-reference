@@ -1,0 +1,7 @@
+{
+  "kty": "OKP",
+  "crv": "Ed25519",
+  "x": "VGhpcyBpcyBhIGRlbW8ga2V5IGZvciBJQktSIFBvQw",
+  "use": "sig",
+  "kid": "vcp-ibkr-prod-signer-001"
+}

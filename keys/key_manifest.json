@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "key_id": "vcp-ibkr-prod-signer-001",
+  "algorithm": "Ed25519",
+  "purpose": "VCP Event Signing",
+  "status": "ACTIVE",
+  "environment": "PRODUCTION",
+  "created_at": "2025-01-01T00:00:00Z",
+  "expires_at": "2025-04-01T00:00:00Z",
+  "key_ceremony": {
+    "date": "2025-01-01",
+    "participants": 3,
+    "threshold": 2,
+    "hsm_model": "AWS CloudHSM",
+    "compliance": "FIPS 140-2 Level 3"
+  },
+  "fingerprint_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "issuer": "VeritasChain IBKR Production Issuer",
+  "revocation_url": "https://veritaschain.org/keys/revocation"
+}

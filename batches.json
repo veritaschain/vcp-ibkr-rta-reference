@@ -1,0 +1,119 @@
+{
+  "batches": [
+    {
+      "BatchID": "IBKR_BATCH_20250106_193000",
+      "MerkleRoot": "b632b62f4350aed34bf8e3ac508ceb8ba5a33b4663ca0cc81dc99880c6356c9c",
+      "MerkleConstruction": "RFC6962",
+      "EventCount": 24,
+      "CreatedAt": "2025-01-06T19:30:00+00:00",
+      "EventHashes": [
+        "6cbb105a74e5942190e62692ed44b958e5f48766cc94b1b7ab41d597b80d2181",
+        "43c8eb47442162f5128711f7c00383ab3b65f1fcf64e18b4cdeed0413fdb216b",
+        "8847a27530cc686d2270d0b76d536b184e09044ae5cf463d708d73c50142ac7e",
+        "cd82cfb0200112084b1db79b1d974f64ad55f5cd4c48f8ada495af54eadf89be",
+        "676c46e100deee0947e17c15ebb68ef005939c0b2ea3647686e5d45c3a3a289a",
+        "43978504112a4f16ec5afffa7598674f19404af830d1f64c27c66a127536bda5",
+        "4e1c45108061bb887fbc45087ed413a92429fe6add5b78b44a71f20a54062c74",
+        "b6623bfb2c84f31ef53fc01e5d0c0d4fa53e800b03c11d93577b1b326654484d",
+        "2836645a8bc96db18ebf23ea8c48d1fd6482a61b44ddc2e58e09b2d819c31ddb",
+        "e19a49b0bad0a46fc8fe40f17d2d52a5d95a20ca199108813a204255da12cb37",
+        "2f3a4722f9ec6385c6f7d76dcb20a6d8b38517b77e5eb4135a5eb6e0da94f2a5",
+        "f94ee8f1a8c9cbb6b0fa7a114c800a22530220b686f52fc93e5cb929f821ff5a",
+        "17ee253d19034e0d69c5950372a990a82752060c803c1a1f5ccc316d9ba07265",
+        "74ad7b04e286d2927e146eb2d537e59bb707e56f4e2c6ef3061f2e50e2fd7e2a",
+        "f977c8fc056fa21ec8764ea536f1969db50722be029305aefd1524da2d2437da",
+        "24757a26c3e7c719723430cc983a39d2dac3380e9e224f5e798d01ba656c6f09",
+        "9f55d7583fe8821ba44236945299fe4e172c5e0bd3637c76039aa3a4ee878b1c",
+        "036a0bb12144be1329c5c0a3e901c2c967e79fbc3ccff5269fad0dfb04ab9bf3",
+        "989ec2a87bf63f43bab8a8f01fe23ee60c7737ff5d5ea5e0511ad5ffd00a5fe5",
+        "531ff17688f6e5c6bb06142cb34e764ad753c9cd8e25e09984c1abf5c3e99b76",
+        "efa495f23b0fde05ff8b835a6d027ceef0db22687915ee67d45f4303ec6e51a8",
+        "56039c606965bd14c684bcec1c44e429bb1c2b8491fc0ac84241224d938a9bab",
+        "c1a789c0e671319165f01371637a7e1d8bbdc8a21ca6bea718107231846e36ff",
+        "9794a140b0ab03c1df83bea9ff4d0dbc2740e234ac08e7fb4e228ec9eca16843"
+      ],
+      "InclusionProofs": [
+        {
+          "EventID": "01943af3-21c0-7440-a7cf-924998626557",
+          "EventHash": "6cbb105a74e5942190e62692ed44b958e5f48766cc94b1b7ab41d597b80d2181",
+          "LeafIndex": 0,
+          "MerkleRoot": "b632b62f4350aed34bf8e3ac508ceb8ba5a33b4663ca0cc81dc99880c6356c9c",
+          "AuditPath": [
+            {
+              "position": "right",
+              "hash": "511db3c512107beedb6c6a61d9bf5231f2c28e35ed9ea2ac04e07e621b5d6c9f"
+            },
+            {
+              "position": "right",
+              "hash": "65f03150d6f8da5cec8ebf4d6acac2702a924fd296ea5905d9422c41efc3e217"
+            },
+            {
+              "position": "right",
+              "hash": "7a3f8c84bca406f5ec324a6da07c7ba8b447f4a1350cfa49a3896cfa3255cd2b"
+            },
+            {
+              "position": "right",
+              "hash": "19f1929ebbc38ffc373fb7b86b04c5013a1ad5baf01239324243fa3970250b84"
+            },
+            {
+              "position": "right",
+              "hash": "bcf15506948cbd3af00051e90bde4bc011f492d8ff45921a2585cb3b23d28bfe"
+            }
+          ]
+        },
+        {
+          "EventID": "01943af3-2544-7cab-a29e-55f8dcd0ccc2",
+          "EventHash": "17ee253d19034e0d69c5950372a990a82752060c803c1a1f5ccc316d9ba07265",
+          "LeafIndex": 12,
+          "MerkleRoot": "b632b62f4350aed34bf8e3ac508ceb8ba5a33b4663ca0cc81dc99880c6356c9c",
+          "AuditPath": [
+            {
+              "position": "right",
+              "hash": "3aa69e39f14f60249835297a916df510974b26af658fcd9c6402173f42af2919"
+            },
+            {
+              "position": "right",
+              "hash": "8b8d481dca2b703dfcefb0f021b387aa3a7193eb565b01256d505256ff4d8cbb"
+            },
+            {
+              "position": "left",
+              "hash": "27e29c66a5293b8b074ed69a66356a427a8d48d53320e1ebf28184b4fb52ebbd"
+            },
+            {
+              "position": "left",
+              "hash": "3d96b163d13542371f634531617d8dd09bf8d3645df9636c227d99ee0d12ba32"
+            },
+            {
+              "position": "right",
+              "hash": "bcf15506948cbd3af00051e90bde4bc011f492d8ff45921a2585cb3b23d28bfe"
+            }
+          ]
+        },
+        {
+          "EventID": "01943af3-2bf2-775b-b11c-cbb5e99035b3",
+          "EventHash": "9794a140b0ab03c1df83bea9ff4d0dbc2740e234ac08e7fb4e228ec9eca16843",
+          "LeafIndex": 23,
+          "MerkleRoot": "b632b62f4350aed34bf8e3ac508ceb8ba5a33b4663ca0cc81dc99880c6356c9c",
+          "AuditPath": [
+            {
+              "position": "left",
+              "hash": "f615ae52764da0db193448e6d4fd2f440a7acd34a07dfaac3f57a283f6f74960"
+            },
+            {
+              "position": "left",
+              "hash": "5846397dcfdab2fc48c02acfb687395b1c60b9cd7e995bb43041a4de5c3cd6ea"
+            },
+            {
+              "position": "left",
+              "hash": "6a8909382ae1f4caf881a3ed6d71ecb0f7ad307bd03228f22baa996997020733"
+            },
+            {
+              "position": "left",
+              "hash": "83dc2b2d72c5b63dc94b2a7adf07312c67da7b5a53521e6b5305e0d3c2745d77"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

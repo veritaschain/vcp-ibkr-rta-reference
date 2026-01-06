@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-01-06T11:32:52.798023+00:00",
+  "algorithm": "SHA-256",
+  "environment": "PRODUCTION",
+  "files": {
+    "README.md": "37cd4764f649c4cc07660effbb6b3b81c9a489b55a37adfce0299c87e31cb826",
+    "verify.py": "434dcfcb35eea7c07f5d4a0527fd4018c338a31359f56dec7f856e931396361d",
+    "events.json": "3a96c9e529050094dbfbb4e652a1811b7fdeb09f67a8ea0ca89dfead60ac326d",
+    "batches.json": "48796212ae668c0c93d08e2c3d7f89a314bfc790ab7d34aa1c2d0f0e176985ec",
+    "events.jsonl": "78aab5c67c6dac68b59ffa866828589c3ceadc78a4c816fc8d24b40d1fcb68a5",
+    "anchors.json": "7c98fd9ffaeed206f8750c9e93c21506474202e657fd47a7ce61980f287af0f3",
+    "fix_messages.jsonl": "bf77b8b6753ebb774807d2af9c7a4dcf28e319c0925813244ef639c836558d4c",
+    "CHANGELOG.md": "7ad68d329bf69ece4619513da56a4d4d1150a0be633ad1c644afcd1f4b11b8e4",
+    "LICENSE": "9250e769465212317e090c450695f3495955b7ccba62d0d02eb5dd279d9cfe2d",
+    "mapping.md": "3a232fb01d265f3a5f356e713a03e14b78dfa6ad8479ef567cf716695fbd847b",
+    "verifier_outputs/verification_report.txt": "b02918b8dc494bea74e95dc29a8874581c776b50f7bfe27bffa650ae513706cb",
+    "verifier_outputs/verification_report.json": "bcf30110454c12cf19de3569108a4382907a120e1e5618024a69f05c26f09283",
+    "datasets/metadata.json": "aa4fcb1ff5df2fdfe9563dc951305b286b9183e97d8d8aa67d66202006e52863",
+    "keys/signer_ed25519_pub.jwk": "cbc67ab6d41644e2ab061d6376cbc3dc8ebd2c11839728964a86f8f4886d8ef5",
+    "keys/key_manifest.json": "4f49e50ad32baea1a900b93ab850a4c2efaad5849b2159a22a3885018ff30582",
+    "keys/signer_ed25519_pub.pem": "b8913ee750fbf5a2de0b7e54d51590ab897771826e41d02057a197003738fa7c",
+    "certificates/event_certificate_REJ_001.json": "bf682b2322c54f2c659a0e1f350fceaa5424f9bf8c6f19c5cbfbb6cc5b473577",
+    "certificates/event_certificate_ACK_001.json": "3935e62f0dc0a09a30dd938faa7f0359a320541acf00676d7b7951e66d0f44cf",
+    "certificates/event_certificate_ORD_001.json": "04b368d9dcdae609c90ea7be9d776c064c54a614198e8bfd0683a0e2cd4e4e1d",
+    "certificates/event_certificate_EXE_001.json": "d9a6ff2699b8dcfbec745f6d7c3c292adb253f44c704c50b7f5c4252c2a59d6b"
+  }
+}

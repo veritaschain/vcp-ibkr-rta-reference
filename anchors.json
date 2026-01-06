@@ -1,0 +1,22 @@
+{
+  "anchors": [
+    {
+      "AnchorID": "IBKR_ANCHOR_20250106_193500",
+      "MerkleRoot": "b632b62f4350aed34bf8e3ac508ceb8ba5a33b4663ca0cc81dc99880c6356c9c",
+      "AnchorTarget": "TIMESTAMPING_AUTHORITY",
+      "AnchorTimestamp": "2025-01-06T19:35:00+00:00",
+      "AnchorFrequency": "DAILY",
+      "EventCount": 24,
+      "BatchID": "IBKR_BATCH_20250106_193000",
+      "RegulatoryRetention": {
+        "Jurisdiction": "US",
+        "RetentionYears": 6,
+        "Regulations": [
+          "SEC Rule 17a-4",
+          "FINRA Rule 4511",
+          "Reg NMS"
+        ]
+      }
+    }
+  ]
+}
