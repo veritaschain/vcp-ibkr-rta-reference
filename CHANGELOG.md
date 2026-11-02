@@ -2,6 +2,12 @@
 
 All notable changes to this VCP Evidence Pack will be documented in this file.
 
+## Publication correction — 2026-11-02
+
+- The current verifier reports local consistency only; unauthenticated packs remain `INDETERMINATE`, and observed mismatches are `INVALID`. Earlier compliance and production claims below are historical, not current findings.
+- Preserve the original file manifest under `archive/` and regenerate the current checksum inventory after the verifier/README repair. Neither manifest authenticates origin or establishes conformity.
+- Mark current dataset/key distribution metadata as demonstration use with unverified origin and custody; retain exact original metadata in `archive/`. Unknown synthetic origin is `null`, not a new assertion of synthetic generation.
+
 ## [1.1.0] - 2025-01-06
 
 ### Added
