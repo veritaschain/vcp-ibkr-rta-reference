@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "vcp_version": "1.1",
+  "profile": "FIX",
+  "profile_version": "4.2",
+  "conformance_tier": "GOLD",
+  "policy_id": "org.veritaschain:vcp-ibkr-production-v1",
+  "issuer": "VeritasChain IBKR Production Issuer",
+  "broker": "Interactive Brokers LLC",
+  "statistics": {
+    "event_count": 26,
+    "fix_message_count": 18,
+    "batch_count": 1,
+    "anchor_count": 1,
+    "certificate_count": 4
+  },
+  "cryptographic": {
+    "merkle_root": "b632b62f4350aed34bf8e3ac508ceb8ba5a33b4663ca0cc81dc99880c6356c9c",
+    "merkle_construction": "RFC6962",
+    "hash_algorithm": "SHA-256",
+    "signature_algorithm": "ED25519",
+    "signer_key_id": "vcp-ibkr-prod-signer-001"
+  },
+  "anchor_refs": [
+    {
+      "anchor_id": "IBKR_ANCHOR_20250106_193500",
+      "anchor_target": "TIMESTAMPING_AUTHORITY",
+      "merkle_root": "b632b62f4350aed34bf8e3ac508ceb8ba5a33b4663ca0cc81dc99880c6356c9c"
+    }
+  ],
+  "temporal": {
+    "trading_date": "2025-01-06",
+    "session_start": "2025-01-06T09:30:00.000Z",
+    "session_end": "2025-01-06T19:35:00.000Z",
+    "generated_at": "2026-01-06T07:02:07.573773+00:00",
+    "timezone": "UTC"
+  },
+  "file_integrity": {
+    "events.json": "59cab969e61032d230724af8eb763cb5ea3b3fa7c2ee106eb4df12a88d7ea1de",
+    "batches.json": "f42c72c8275a28e78f7cb89b3d1a3a65d07877b4dc27845ccd2d4d08ae0762d6",
+    "anchors.json": "14b0478de923905783b1227f6f253296f4bc01f749c69a85a9e5e1db58d71f75"
+  },
+  "event_type_distribution": {
+    "INIT": 1,
+    "SIG": 5,
+    "ORD": 5,
+    "ACK": 4,
+    "EXE": 3,
+    "PRT": 1,
+    "MOD": 2,
+    "REJ": 1,
+    "CXL": 2,
+    "VCP_BATCH": 1,
+    "VCP_ANCHOR": 1
+  },
+  "data_classification": "PRODUCTION",
+  "synthetic_data": false,
+  "regulatory_context": {
+    "primary": [
+      "SEC Rule 17a-4",
+      "FINRA Rule 4511",
+      "Reg NMS"
+    ],
+    "jurisdiction": "US",
+    "regulator": "SEC/FINRA",
+    "retention_years": 6
+  },
+  "data_origin": "VCP Sidecar capture from Interactive Brokers FIX 4.2 production session",
+  "production_context": {
+    "capture_method": "VCP FIX Sidecar v1.1",
+    "session_type": "LIVE_TRADING",
+    "data_integrity": "CRYPTOGRAPHICALLY_VERIFIED",
+    "retention_policy": "SEC_17a-4_COMPLIANT"
+  }
+}

@@ -3,7 +3,7 @@
   "vcp_version": "1.1",
   "profile": "FIX",
   "profile_version": "4.2",
-  "conformance_tier": "GOLD",
+  "conformance_tier": "NOT_ASSESSED",
   "policy_id": "org.veritaschain:vcp-ibkr-production-v1",
   "issuer": "VeritasChain IBKR Production Issuer",
   "broker": "Interactive Brokers LLC",
@@ -36,9 +36,9 @@
     "timezone": "UTC"
   },
   "file_integrity": {
-    "events.json": "59cab969e61032d230724af8eb763cb5ea3b3fa7c2ee106eb4df12a88d7ea1de",
-    "batches.json": "f42c72c8275a28e78f7cb89b3d1a3a65d07877b4dc27845ccd2d4d08ae0762d6",
-    "anchors.json": "14b0478de923905783b1227f6f253296f4bc01f749c69a85a9e5e1db58d71f75"
+    "events.json": "3a96c9e529050094dbfbb4e652a1811b7fdeb09f67a8ea0ca89dfead60ac326d",
+    "batches.json": "48796212ae668c0c93d08e2c3d7f89a314bfc790ab7d34aa1c2d0f0e176985ec",
+    "anchors.json": "7c98fd9ffaeed206f8750c9e93c21506474202e657fd47a7ce61980f287af0f3"
   },
   "event_type_distribution": {
     "INIT": 1,
@@ -53,23 +53,26 @@
     "VCP_BATCH": 1,
     "VCP_ANCHOR": 1
   },
-  "data_classification": "PRODUCTION",
-  "synthetic_data": false,
+  "data_classification": "DEMONSTRATION",
+  "synthetic_data": null,
   "regulatory_context": {
-    "primary": [
-      "SEC Rule 17a-4",
-      "FINRA Rule 4511",
-      "Reg NMS"
-    ],
-    "jurisdiction": "US",
-    "regulator": "SEC/FINRA",
-    "retention_years": 6
+    "status": "NOT_ASSESSED",
+    "note": "Historical regulatory labels are not findings of conformity. See the preserved original metadata."
   },
-  "data_origin": "VCP Sidecar capture from Interactive Brokers FIX 4.2 production session",
+  "data_origin": "Historical supplied FIX-style evidence; broker and production origin are not authenticated.",
   "production_context": {
-    "capture_method": "VCP FIX Sidecar v1.1",
-    "session_type": "LIVE_TRADING",
-    "data_integrity": "CRYPTOGRAPHICALLY_VERIFIED",
-    "retention_policy": "SEC_17a-4_COMPLIANT"
+    "capture_method": "UNVERIFIED_HISTORICAL_DECLARATION",
+    "session_type": "DEMONSTRATION",
+    "data_integrity": "UNAUTHENTICATED_LOCAL_CHECKS_ONLY",
+    "retention_policy": "NOT_ASSESSED"
+  },
+  "synthetic_data_status": "NOT_ESTABLISHED",
+  "publication_review": {
+    "review_date": "2026-11-02",
+    "scope": "Distribution labels only. Event, batch, anchor, certificate, FIX-message and public-key bytes are unchanged.",
+    "original_metadata": "../archive/metadata.pre-2026-11-02.json",
+    "original_sha256": "aa4fcb1ff5df2fdfe9563dc951305b286b9183e97d8d8aa67d66202006e52863",
+    "legacy_identifiers": "Policy ID, issuer name and key ID are historical identifiers, not substantiated production assurances.",
+    "synthetic_data_note": "Unknown provenance is represented as null rather than asserting either live trading or synthetic generation."
   }
 }
