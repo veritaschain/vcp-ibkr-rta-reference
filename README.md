@@ -67,6 +67,12 @@ The verifier does not establish clock accuracy, live-trading origin, broker part
 
 ## Historical outputs and fixed evidence
 
+**Document-specific notice — 10 November 2026:**
+[VCP_IBKR_WorldFirst_Evidence_Report_v2.pdf](VCP_IBKR_WorldFirst_Evidence_Report_v2.pdf)
+is retained as a historical document. Its filename and presence do not establish
+"world's first" status, independent review, conformance or production readiness.
+The original PDF bytes are unchanged.
+
 `verifier_outputs/`, certificate files and historical assessment documents remain historical artifacts. Their previous success/compliance statements are **not current verifier results**. The original manifest is preserved byte-for-byte at `archive/hash_manifest.pre-2026-11-02.json`; its old README/verifier hashes do not describe the current source. The regenerated `hash_manifest.json` records the current listed file bytes, including the archived original. It is an unsigned local checksum inventory, not provenance or conformity evidence.
 
 No event, batch, anchor, public key, certificate, source message or historical verifier output is regenerated. Current dataset/key metadata is a publication correction with byte-preserved originals in `archive/`; neither is a trusted signer registry. Current file digests describe bytes only. This preserves the evidence under review while withdrawing unsupported distribution assurances. Run the current verifier to obtain its current result; independent authentication still requires a separately reviewed implementation and trust policy.
