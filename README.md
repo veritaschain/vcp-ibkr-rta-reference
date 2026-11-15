@@ -13,7 +13,11 @@ The bundled files contain 26 events, with 24 non-control event hashes in one bat
 ## Run the local checks
 
 ```bash
+# Inspect the bundled pack next to this script
 python verify.py
+# Or inspect the selected directory (relative to the working directory or absolute)
+python verify.py /path/to/evidence
+python verify.py --help
 ```
 
 For the unchanged bundled pack, the current result is:
@@ -33,6 +37,13 @@ Overall: INDETERMINATE
 
 Both nonzero results require attention. Do not treat exit code 2 as success.
 The compatibility `verify_evidence_pack(path)` API returns `(False, messages)` for both results. `verify_v1_1_compliance(...)` also returns `False`: declaration fields do not prove conformity.
+
+The CLI accepts at most one evidence directory and rejects unknown options or
+extra arguments before verification. Argument errors exit `2` with a usage
+diagnostic and no `Overall` verdict. `--help` exits `0` after printing help;
+that is not a verification outcome. The existing `main(Path(...))` API and the
+no-argument default remain available. Previously all supplied CLI arguments,
+including a requested directory and `--help`, were silently ignored.
 
 The detailed API exposes the distinction between local checks and authentication:
 

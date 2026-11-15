@@ -10,6 +10,7 @@ License: Apache 2.0
 Copyright (c) 2025 VeritasChain Standards Organization
 """
 
+import argparse
 import hashlib
 import json
 import math
@@ -341,5 +342,13 @@ def main(evidence_dir: Optional[Path] = None) -> int:
     return {VALID: 0, INVALID: 1, INDETERMINATE: 2}[result.status]
 
 
+def cli(argv: Optional[List[str]] = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
+    parser.add_argument('evidence_dir', nargs='?', type=Path,
+                        help='Evidence directory; defaults to the directory containing this script')
+    args = parser.parse_args(argv)
+    return main(args.evidence_dir)
+
+
 if __name__ == '__main__':
-    raise SystemExit(main())
+    raise SystemExit(cli())

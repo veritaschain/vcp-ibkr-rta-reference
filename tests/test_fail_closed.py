@@ -295,6 +295,48 @@ class FailClosedTests(unittest.TestCase):
         self.assertEqual(result.returncode, 1)
         self.assertIn('Overall: INVALID', result.stdout)
 
+    def test_cli_uses_the_selected_evidence_directory(self):
+        self.write(synthetic_pack())
+        script = self.root / 'verify.py'
+        shutil.copyfile(verify.__file__, script)
+        selected = self.root / 'selected'
+        selected.mkdir()
+        pack = synthetic_pack()
+        pack['events']['events'][0]['Payload']['value'] = 'tampered selected evidence'
+        for name, document in pack.items():
+            (selected / (name + '.json')).write_text(json.dumps(document))
+        for argument in (str(selected), 'selected'):
+            with self.subTest(directory=argument):
+                result = subprocess.run([sys.executable, str(script), argument], cwd=self.root,
+                                        capture_output=True, text=True)
+                self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+                self.assertIn('event hash mismatch', result.stdout)
+                self.assertIn('Overall: INVALID', result.stdout)
+
+    def test_cli_help_does_not_verify_evidence(self):
+        self.write(synthetic_pack())
+        script = self.root / 'verify.py'
+        shutil.copyfile(verify.__file__, script)
+        result = subprocess.run([sys.executable, str(script), '--help'],
+                                capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertIn('usage:', result.stdout)
+        self.assertIn('evidence_dir', result.stdout)
+        self.assertNotIn('Overall:', result.stdout)
+
+    def test_cli_rejects_unknown_or_extra_arguments_before_verification(self):
+        self.write(synthetic_pack())
+        script = self.root / 'verify.py'
+        shutil.copyfile(verify.__file__, script)
+        for arguments in (['--unknown'], ['first', 'second'], ['--hel']):
+            with self.subTest(arguments=arguments):
+                result = subprocess.run([sys.executable, str(script), *arguments],
+                                        capture_output=True, text=True)
+                self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+                self.assertIn('usage:', result.stderr)
+                self.assertNotIn('Overall:', result.stdout)
+                self.assertNotIn('Traceback', result.stderr)
+
     def test_local_merkle_checks_match_independent_recursive_oracle(self):
         for size in range(1, 18):
             hashes = [hashlib.sha256(str(i).encode()).hexdigest() for i in range(size)]
