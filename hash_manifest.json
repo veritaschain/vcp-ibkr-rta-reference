@@ -1,14 +1,14 @@
 {
   "schema_version": "2.0",
-  "updated_on": "2026-11-10",
+  "updated_on": "2026-11-15",
   "algorithm": "SHA-256",
   "scope": "Unsigned checksum inventory of the listed current repository files; not origin, signature, anchor, conformance or production verification.",
   "historical_manifest": "archive/hash_manifest.pre-2026-11-02.json",
   "file_count": 29,
   "files": {
     ".github/workflows/verification-regression.yml": {
-      "sha256": "193daf09c95ce734f79ee0cb89222fe0e60c2fe3283a4c9ade55c172318b3a26",
-      "size_bytes": 568
+      "sha256": "9a4a558a60d8f600741fb1dc4e63f750ff7d547b9fe175c3c3a894ba83273b98",
+      "size_bytes": 586
     },
     "CHANGELOG.md": {
       "sha256": "cc36d5312d362493d35efffe0c36de653959857e0bfb34b68926263504316742",
@@ -19,8 +19,8 @@
       "size_bytes": 6938
     },
     "README.md": {
-      "sha256": "44ef9692824b60caacde695fc015a87fec51ede1d05634e96868ca4aea426d5b",
-      "size_bytes": 8314
+      "sha256": "3c31e34b840f886e712f816f016eb8de91eac0b7fed5c35f37feac41a267a808",
+      "size_bytes": 9929
     },
     "STATUS-2026-10-25.md": {
       "sha256": "03842afb43cddd2557ff62f43076d82d520970cfd96a1f7e19e9256e15854030",
@@ -103,11 +103,11 @@
       "size_bytes": 1758
     },
     "tests/test_fail_closed.py": {
-      "sha256": "c72a8cb44d6f841ed4f9ebde3d9a6e0ac0e9e90f242c9c1dbcf6c7ebb0768ce2",
-      "size_bytes": 12042
+      "sha256": "b3e93919a0fd157fef74c3eee35d9d8f353d8946e698751523fbd1cacf4490da",
+      "size_bytes": 17661
     },
     "tools/update_hash_manifest.py": {
-      "sha256": "ba6978663483ed2ba5056dc356f55f250cdd219c5cf600f94c52c727d890cb81",
+      "sha256": "ffc14ea78705ab355e24cf60377dc0c099354862893a1c3f0ace0385201f42ca",
       "size_bytes": 1579
     },
     "verifier_outputs/verification_report.json": {
@@ -119,8 +119,8 @@
       "size_bytes": 2871
     },
     "verify.py": {
-      "sha256": "d5dd7a234526392a754edf877e85bd9d49ba4ab9c837e65f461b057ee3ac1d0f",
-      "size_bytes": 15618
+      "sha256": "c169baccd114ddde5f2e07148750484629679fe01d2b9356f8d6a1d319f5166e",
+      "size_bytes": 16349
     }
   },
   "excluded_from_manifest": [

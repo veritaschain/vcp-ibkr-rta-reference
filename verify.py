@@ -10,8 +10,10 @@ License: Apache 2.0
 Copyright (c) 2025 VeritasChain Standards Organization
 """
 
+import argparse
 import hashlib
 import json
+import math
 import re
 from dataclasses import dataclass
 from datetime import datetime
@@ -137,6 +139,13 @@ def _reject_constant(value: str) -> None:
     raise ValueError('non-finite JSON number: ' + value)
 
 
+def _finite_float(token: str) -> float:
+    value = float(token)
+    if not math.isfinite(value):
+        raise ValueError('non-finite JSON number after float conversion: ' + token)
+    return value
+
+
 def _inspect(evidence_dir: Path) -> VerificationResult:
     errors, gaps, messages = [], [], ['Legacy VCP evidence pack — local consistency only']
     data: Dict[str, list] = {}
@@ -144,7 +153,7 @@ def _inspect(evidence_dir: Path) -> VerificationResult:
         try:
             with (evidence_dir / (name + '.json')).open(encoding='utf-8') as source:
                 doc = json.load(source, object_pairs_hook=_unique_object,
-                                parse_constant=_reject_constant)
+                                parse_constant=_reject_constant, parse_float=_finite_float)
             if not isinstance(doc, dict):
                 raise ValueError('top-level JSON must be an object')
             values = doc.get(name, [])
@@ -287,7 +296,9 @@ def _inspect(evidence_dir: Path) -> VerificationResult:
                 gaps.append('control event has no corresponding batch/anchor record')
             else:
                 for field in ('MerkleRoot', 'EventCount', 'AnchorTarget'):
-                    if field in governance and field in record and governance[field] != record[field]:
+                    if field in governance and field in record and (
+                            type(governance[field]) is not type(record[field]) or
+                            governance[field] != record[field]):
                         errors.append('control event disagrees with its record: ' + field)
         except (KeyError, TypeError, AttributeError) as exc:
             errors.append('malformed control event: ' + str(exc))
@@ -331,5 +342,13 @@ def main(evidence_dir: Optional[Path] = None) -> int:
     return {VALID: 0, INVALID: 1, INDETERMINATE: 2}[result.status]
 
 
+def cli(argv: Optional[List[str]] = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
+    parser.add_argument('evidence_dir', nargs='?', type=Path,
+                        help='Evidence directory; defaults to the directory containing this script')
+    args = parser.parse_args(argv)
+    return main(args.evidence_dir)
+
+
 if __name__ == '__main__':
-    raise SystemExit(main())
+    raise SystemExit(cli())

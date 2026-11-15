@@ -38,12 +38,12 @@ def oracle_path(hashes, index):
     return oracle_path(hashes[split:], index - split) + [{'position': 'left', 'hash': oracle_root(hashes[:split]).hex()}]
 
 
-def synthetic_pack(broken_chain=False, fake_signatures=False):
+def synthetic_pack(broken_chain=False, fake_signatures=False, size=3):
     policy = {'PolicyID': 'synthetic-policy', 'ConformanceTier': 'SILVER',
               'RegistrationPolicy': {'Issuer': 'synthetic-issuer'},
               'VerificationDepth': {'HashChainValidation': True, 'MerkleProofRequired': True, 'ExternalAnchorRequired': True}}
     events = []
-    for i in range(3):
+    for i in range(size):
         event = {'Header': {'EventID': 'synthetic-' + str(i), 'EventType': 'ORD',
                            'TimestampISO': '2026-01-01T00:00:0' + str(i) + 'Z',
                            'HashAlgo': 'SHA256', 'SignAlgo': 'ED25519'},
@@ -199,6 +199,62 @@ class FailClosedTests(unittest.TestCase):
         (self.root / 'events.json').write_text('{"events":[],"unexpected":NaN}')
         self.assertEqual(verify.verify_evidence_pack_result(self.root).status, verify.INVALID)
 
+    def test_json_float_overflow_is_invalid_in_every_document(self):
+        for name in ('events', 'batches', 'anchors'):
+            for token in ('1e400', '-1e400'):
+                with self.subTest(document=name, token=token):
+                    self.write(synthetic_pack())
+                    path = self.root / (name + '.json')
+                    path.write_text('{"unused_metadata":{"number":' + token + '},' + path.read_text()[1:])
+                    result = verify.verify_evidence_pack_result(self.root)
+                    self.assertEqual(result.status, verify.INVALID)
+                    self.assertFalse(result.local_checks_passed)
+                    self.assertIn(name + ': malformed evidence', '\n'.join(result.messages))
+
+    def test_finite_float_metadata_preserves_local_result_and_input_bytes(self):
+        pack = synthetic_pack()
+        for document in pack.values():
+            document['unused_metadata'] = {'price': 12.5, 'small': 1e-300,
+                                           'large': 1e300, 'integer': 9007199254740993}
+        self.write(pack)
+        before = {path: path.read_bytes() for path in self.root.glob('*.json')}
+        result = verify.verify_evidence_pack_result(self.root)
+        self.assertEqual(result.status, verify.INDETERMINATE)
+        self.assertTrue(result.local_checks_passed)
+        self.assertEqual(before, {path: path.read_bytes() for path in before})
+
+    def test_control_event_counts_preserve_integer_type(self):
+        for size, malformed in ((3, 3.0), (1, True)):
+            with self.subTest(size=size, malformed=malformed):
+                pack = synthetic_pack(size=size)
+                event = pack['events']['events'][-1]
+                event['Governance']['EventCount'] = size
+                event['Header']['EventHash'] = event_digest(event)
+                self.assertTrue(self.result(pack).local_checks_passed)
+                event['Governance']['EventCount'] = malformed
+                event['Header']['EventHash'] = event_digest(event)
+                # The current hashes, chain, proofs and roots remain coherent;
+                # only the control/anchor count's JSON type disagrees.
+                self.assertTrue(all(event_digest(item) == item['Header']['EventHash']
+                                    for item in pack['events']['events']))
+                result = self.result(pack)
+                self.assertEqual(result.status, verify.INVALID)
+                self.assertFalse(result.local_checks_passed)
+                self.assertIn('control event disagrees with its record: EventCount',
+                              '\n'.join(result.messages))
+
+    def test_cli_rejects_json_float_overflow(self):
+        self.write(synthetic_pack())
+        path = self.root / 'events.json'
+        path.write_text('{"unused_metadata":1e400,' + path.read_text()[1:])
+        shutil.copyfile(verify.__file__, self.root / 'verify.py')
+        result = subprocess.run([sys.executable, str(self.root / 'verify.py')],
+                                capture_output=True, text=True)
+        self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+        self.assertIn('Overall: INVALID', result.stdout)
+        self.assertNotIn('Local consistency: PASS', result.stdout)
+        self.assertNotIn('Traceback', result.stderr)
+
     def test_missing_evidence_is_indeterminate(self):
         self.assertEqual(verify.verify_evidence_pack_result(self.root).status, verify.INDETERMINATE)
 
@@ -238,6 +294,48 @@ class FailClosedTests(unittest.TestCase):
         result = subprocess.run([sys.executable, str(self.root / 'verify.py')], capture_output=True, text=True)
         self.assertEqual(result.returncode, 1)
         self.assertIn('Overall: INVALID', result.stdout)
+
+    def test_cli_uses_the_selected_evidence_directory(self):
+        self.write(synthetic_pack())
+        script = self.root / 'verify.py'
+        shutil.copyfile(verify.__file__, script)
+        selected = self.root / 'selected'
+        selected.mkdir()
+        pack = synthetic_pack()
+        pack['events']['events'][0]['Payload']['value'] = 'tampered selected evidence'
+        for name, document in pack.items():
+            (selected / (name + '.json')).write_text(json.dumps(document))
+        for argument in (str(selected), 'selected'):
+            with self.subTest(directory=argument):
+                result = subprocess.run([sys.executable, str(script), argument], cwd=self.root,
+                                        capture_output=True, text=True)
+                self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+                self.assertIn('event hash mismatch', result.stdout)
+                self.assertIn('Overall: INVALID', result.stdout)
+
+    def test_cli_help_does_not_verify_evidence(self):
+        self.write(synthetic_pack())
+        script = self.root / 'verify.py'
+        shutil.copyfile(verify.__file__, script)
+        result = subprocess.run([sys.executable, str(script), '--help'],
+                                capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertIn('usage:', result.stdout)
+        self.assertIn('evidence_dir', result.stdout)
+        self.assertNotIn('Overall:', result.stdout)
+
+    def test_cli_rejects_unknown_or_extra_arguments_before_verification(self):
+        self.write(synthetic_pack())
+        script = self.root / 'verify.py'
+        shutil.copyfile(verify.__file__, script)
+        for arguments in (['--unknown'], ['first', 'second'], ['--hel']):
+            with self.subTest(arguments=arguments):
+                result = subprocess.run([sys.executable, str(script), *arguments],
+                                        capture_output=True, text=True)
+                self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+                self.assertIn('usage:', result.stderr)
+                self.assertNotIn('Overall:', result.stdout)
+                self.assertNotIn('Traceback', result.stderr)
 
     def test_local_merkle_checks_match_independent_recursive_oracle(self):
         for size in range(1, 18):
