@@ -59,6 +59,22 @@ Only `events.json`, `batches.json` and `anchors.json` are read by the verifier.
 
 These checks describe this legacy file layout. They do not amend a VCP specification, implement all VCP requirements, or prove that the supplied event population includes every real-world event. Multi-batch anchor interpretation and unsupported algorithms remain indeterminate.
 
+### Input consistency correction — 15 November 2026
+
+All three JSON inputs also reject decimal/exponent tokens such as `1e400` when
+conversion would overflow the legacy Python floating-point representation to
+infinity. Previously such values in unchecked metadata could leave
+`local_checks_passed=True`, although the overall result remained `INDETERMINATE`.
+Finite floating-point values and integer values retain the existing legacy
+parsing/encoding; this is not exact-decimal parsing or general RFC 8785 support.
+
+Control-event comparisons preserve the JSON value type as well as the value.
+For example, `EventCount: 3.0` cannot match an integer count of `3`, and `true`
+cannot match `1`. This agrees with the existing integer checks on batch and
+anchor counts. These malformed inputs now produce `INVALID` / exit `1` and
+cannot report local consistency as passed. Original evidence bytes and the
+unchanged sample's `INDETERMINATE` / exit `2` result are preserved.
+
 ## What remains unverified
 
 **No event/signature authentication, trusted signer identity, key revocation, TSA token signature/trust-chain/message-imprint verification, blockchain receipt verification, or external witness check is implemented.** A public key file, `SignAlgo`, `VerificationStatus`, or an anchor target name does not satisfy those checks. Fabricated signature/receipt strings cannot upgrade the overall result to `VALID`.
