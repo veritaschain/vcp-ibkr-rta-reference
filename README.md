@@ -120,6 +120,7 @@ The tests generate synthetic packs in temporary directories. They cover unsigned
 
 - Verification script: Apache 2.0, as stated in its source header.
 - Existing repository licensing and attribution remain in [LICENSE](LICENSE).
+- The Apache License 2.0 terms reproduced in `LICENSE` are abridged. `LICENSE` is kept byte-for-byte as part of the original pack; the complete text is at <https://www.apache.org/licenses/LICENSE-2.0.txt>, the location the notice in `LICENSE` already names.
 - Technical questions: technical@veritaschain.org
 - Standards questions: standards@veritaschain.org
 
